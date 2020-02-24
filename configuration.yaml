@@ -21,6 +21,8 @@ spotify:
 buttons:
 indoor_meteo:
 lcd:
+cron:
+
 telegram_bot:
   - platform: broadcast
     api_key: !secret telegram_api_key
@@ -30,9 +32,24 @@ notify:
   - name: Telegram notification
     platform: telegram
     chat_id: !secret telegram_chat_id
+    
 # Text to speech
 tts:
   - platform: google_translate
+
+switch:
+  - platform: template
+    switches:
+      backlight:
+        value_template: "{{ is_state('lcd.backlight', 'on') }}"
+        turn_on:
+          service: lcd.on
+          data:
+            entity_id: lcd.backlight_on
+        turn_off:
+          service: lcd.off
+          data:
+            entity_id: lcd.backlight_off
 
 group: !include groups.yaml
 automation: !include automations.yaml

@@ -94,3 +94,25 @@
   condition: []
   action:
   - service: lcd.backlight_toggle
+- id: '1582577967557'
+  alias: smbc
+  description: ''
+  trigger:
+  - entity_id: cron.smbc_image
+    platform: state
+  condition: []
+  action:
+  - data:
+      url: '{{ states("cron.smbc_image") }}'
+    service: telegram_bot.send_photo
+- id: '1582578412319'
+  alias: cron
+  description: ''
+  trigger:
+  - hours: '*'
+    minutes: '0'
+    platform: time_pattern
+    seconds: '0'
+  condition: []
+  action:
+  - service: cron.update_smbc
