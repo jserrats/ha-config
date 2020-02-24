@@ -1,0 +1,17 @@
+'1581544546310':
+  alias: Mood
+  sequence:
+  - data:
+      entity_id: media_player.spotify_jaume_serrats9
+      media_content_id: spotify:playlist:5RbMqezbuPtaRHssL8fZjp
+      media_content_type: playlist
+    service: media_player.play_media
+  - scene: scene.room
+  - service: lcd.backlight_off
+'1582558800897':
+  alias: Bona nit
+  sequence:
+  - service: lcd.backlight_off
+  - entity_id: media_player.spotify_jaume_serrats9
+    service: media_player.media_pause
+  - scene: scene.room

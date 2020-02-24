@@ -1,0 +1,96 @@
+- id: '1581536952497'
+  alias: LCD Line 0 & 1
+  description: ''
+  trigger:
+  - hours: '*'
+    minutes: '*'
+    platform: time_pattern
+    seconds: '0'
+  condition: []
+  action:
+  - data:
+      text: '  {{ now().strftime(''%a  %d/%m  %H:%M'') }}  '
+    service: lcd.print0
+  - data:
+      text: '{{ state_attr(''weather.home'', ''temperature'') }}C {{ state_attr(''weather.home'',''humidity'')
+        }}% {{ states(''indoor_meteo.temperature'')[:-1] }}C {{ states(''indoor_meteo.humidity'').split(''.'')[0]
+        }}%'
+    service: lcd.print1
+- id: '1581541286811'
+  alias: Spotify Play/pause
+  description: ''
+  trigger:
+  - entity_id: buttons.last_button
+    platform: state
+    to: '1'
+  condition: []
+  action:
+  - data: {}
+    entity_id: media_player.spotify_jaume_serrats9
+    service: media_player.media_play_pause
+- id: '1581541286812'
+  alias: Spotify Previous
+  description: ''
+  trigger:
+  - entity_id: buttons.last_button
+    platform: state
+    to: '0'
+  condition: []
+  action:
+  - data: {}
+    entity_id: media_player.spotify_jaume_serrats9
+    service: media_player.media_previous_track
+- id: '1581541286813'
+  alias: Spotify Next
+  description: ''
+  trigger:
+  - entity_id: buttons.last_button
+    platform: state
+    to: '2'
+  condition: []
+  action:
+  - data: {}
+    entity_id: media_player.spotify_jaume_serrats9
+    service: media_player.media_next_track
+- id: '1581542900662'
+  alias: Yeelight Toggle
+  description: ''
+  trigger:
+  - entity_id: buttons.last_button
+    platform: state
+    to: '5'
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.bedroom_yeelight
+    service: light.toggle
+- id: '1581544120342'
+  alias: Yeelight NORMAL
+  description: ''
+  trigger:
+  - entity_id: buttons.last_button
+    platform: state
+    to: '6'
+  condition: []
+  action:
+  - scene: scene.day_light
+- id: '1581544196322'
+  alias: Yeelight RED
+  description: ''
+  trigger:
+  - entity_id: buttons.last_button
+    platform: state
+    to: '7'
+  condition: []
+  action:
+  - scene: scene.room
+- id: '1582495379885'
+  alias: LCD toggle backlight
+  description: ''
+  trigger:
+  - entity_id: buttons.last_button
+    platform: state
+    to: '3'
+  condition: []
+  action:
+  - service: lcd.backlight_toggle

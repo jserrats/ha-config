@@ -1,0 +1,54 @@
+- id: '1582498679601'
+  name: Night light
+  entities:
+    light.bedroom_yeelight:
+      brightness: 13
+      color_temp: 250
+      effect_list:
+      - Strobe color
+      - Police
+      - Christmas
+      - RGB
+      - Random Loop
+      - Fast Random Loop
+      - LSD
+      - Slowdown
+      - Disco
+      - Strobe epilepsy!
+      - Alarm
+      - Police2
+      - WhatsApp
+      - Facebook
+      - Twitter
+      - Slow Temp
+      - Stop
+      flowing: false
+      friendly_name: Jaume yeelight
+      hs_color:
+      - 15
+      - 72.157
+      max_mireds: 588
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 116
+      - 70
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.595
+      - 0.343
+- id: '1582499043050'
+  name: Day Light
+  entities:
+    light.bedroom_yeelight:
+      brightness: 255
+      color_temp: 302
+      flowing: false
+      friendly_name: Bedroom yeelight
+      rgb_color:
+      - 255
+      - 187
+      - 129
+      state: 'on'
+      supported_features: 63
