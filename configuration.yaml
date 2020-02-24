@@ -21,7 +21,15 @@ spotify:
 buttons:
 indoor_meteo:
 lcd:
-
+telegram_bot:
+  - platform: broadcast
+    api_key: !secret telegram_api_key
+    allowed_chat_ids:
+      - !secret telegram_chat_id
+notify:
+  - name: Telegram notification
+    platform: telegram
+    chat_id: !secret telegram_chat_id
 # Text to speech
 tts:
   - platform: google_translate
