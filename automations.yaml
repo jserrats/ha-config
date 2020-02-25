@@ -96,13 +96,16 @@
   - service: lcd.backlight_toggle
 - id: '1582577967557'
   alias: smbc
-  description: ''
+  description: Send updatet smbc via telegram
   trigger:
   - entity_id: cron.smbc_image
+    from: '*'
     platform: state
+    to: '*'
   condition: []
   action:
   - data:
+      caption: '{{ states("cron.smbc_title") }}'
       url: '{{ states("cron.smbc_image") }}'
     service: telegram_bot.send_photo
 - id: '1582578412319'

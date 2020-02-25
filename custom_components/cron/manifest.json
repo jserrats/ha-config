@@ -1,0 +1,13 @@
+{
+    "domain": "cron",
+    "name": "Scripts to be executed in a cronyl fashion",
+    "documentation": "https://www.example.com",
+    "dependencies": [],
+    "codeowners": [
+        "@jserrats"
+    ],
+    "requirements": [
+        "beautifulsoup4==4.6.3",
+        "requests==2.21.0"
+    ]
+}
