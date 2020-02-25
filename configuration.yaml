@@ -41,17 +41,36 @@ switch:
   - platform: template
     switches:
       backlight:
+        friendly_name: LCD Backlight
         value_template: "{{ is_state('lcd.backlight', 'on') }}"
         turn_on:
-          service: lcd.on
-          data:
-            entity_id: lcd.backlight_on
+          service: lcd.backlight_on
         turn_off:
-          service: lcd.off
-          data:
-            entity_id: lcd.backlight_off
+          service: lcd.backlight_off
+  - platform: mqtt
+    name: "Power Switch 0"
+    command_topic: "domos/arduino/power/0"
+    state_topic: "domos/arduino/power/0"
+    payload_on: "on"
+    payload_off: "off"
+    state_on: "on"
+    state_off: "off"
+    qos: 0
+    retain: true
+  - platform: mqtt
+    name: "Power Switch 1"
+    command_topic: "domos/arduino/power/1"
+    state_topic: "domos/arduino/power/1"
+    payload_on: "on"
+    payload_off: "off"
+    state_on: "on"
+    state_off: "off"
+    qos: 0
+    retain: true
 
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
+homeassistant:
+  customize: !include customize.yaml

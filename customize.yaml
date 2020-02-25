@@ -1,0 +1,11 @@
+switch.power_switch_1:
+  device_class: switch
+  assumed_state: false
+switch.power_switch_0:
+  assumed_state: false
+indoor_meteo.temperature:
+  unit_of_measurement: ºC
+indoor_meteo.pressure:
+  unit_of_measurement: hPa
+indoor_meteo.humidity:
+  unit_of_measurement: '%'
