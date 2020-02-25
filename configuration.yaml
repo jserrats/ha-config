@@ -22,7 +22,6 @@ spotify:
   client_secret: !secret spotify_client_secret
 
 buttons:
-indoor_meteo:
 lcd:
 cron:
 
@@ -39,6 +38,23 @@ notify:
 # Text to speech
 tts:
   - platform: google_translate
+
+sensor:
+  - platform: mqtt
+    state_topic: "domos/info/meteo"
+    name: "Indoor temperature"
+    value_template: '{{ "{:2.1f}".format(float(value_json.temperature)) }}'
+    unit_of_measurement: '°C'
+  - platform: mqtt
+    state_topic: "domos/info/meteo"
+    name: "Indoor humidity"
+    value_template: '{{ "{:2.1f}".format(float(value_json.humidity)) }}'
+    unit_of_measurement: '%'
+  - platform: mqtt
+    state_topic: "domos/info/meteo"
+    name: "Indoor pressure"
+    value_template: '{{ "{:2.1f}".format(float(value_json.pressure)) }}'
+    unit_of_measurement: 'hPa'
 
 switch:
   - platform: template
