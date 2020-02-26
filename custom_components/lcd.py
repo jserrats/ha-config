@@ -26,28 +26,32 @@ def setup(hass, config):
 
     hass.states.set(line, "off")
 
+    def format_line(call):
+        text = templater.Template(call.data.get("text"), hass).async_render()
+        return "{:^20s}".format(text)
+
     # Service to publish a message on MQTT.
     def print_line_0(call):
         """Service to send a message."""
-        text= templater.Template(call.data.get("text"), hass).async_render()
+        text = format_line(call)
         mqtt.publish(topic + "/0", text)
         hass.states.set(lines[0], text)
 
     def print_line_1(call):
         """Service to send a message."""
-        text= templater.Template(call.data.get("text"), hass).async_render()
+        text = format_line(call)
         mqtt.publish(topic + "/1", text)
         hass.states.set(lines[1], text)
 
     def print_line_2(call):
         """Service to send a message."""
-        text= templater.Template(call.data.get("text"), hass).async_render()
+        text = format_line(call)
         mqtt.publish(topic + "/2", text)
         hass.states.set(lines[2], text)
 
     def print_line_3(call):
         """Service to send a message."""
-        text= templater.Template(call.data.get("text"), hass).async_render()
+        text = format_line(call)
         mqtt.publish(topic + "/3", text)
         hass.states.set(lines[3], text)
 
@@ -58,13 +62,13 @@ def setup(hass, config):
     def backlight_off(call):
         mqtt.publish(topic + "/bl", "n")
         hass.states.set(backlight, "off")
-    
+
     def backlight_toggle(call):
         if(hass.states.is_state(backlight, "on")):
-           backlight_off(call)
+            backlight_off(call)
         else:
-           backlight_on(call)
-    
+            backlight_on(call)
+
     # Register our service with Home Assistant.
     hass.services.register(DOMAIN, "print0", print_line_0)
     hass.services.register(DOMAIN, "print1", print_line_1)
@@ -73,8 +77,6 @@ def setup(hass, config):
     hass.services.register(DOMAIN, "backlight_on", backlight_on)
     hass.services.register(DOMAIN, "backlight_off", backlight_off)
     hass.services.register(DOMAIN, "backlight_toggle", backlight_toggle)
-
-
 
     # Return boolean to indicate that initialization was successfully.
     return True
