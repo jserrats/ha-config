@@ -1,5 +1,5 @@
 - id: '1581536952497'
-  alias: LCD Line 0 & 1
+  alias: LCD 0&1 - Time and weather
   description: ''
   trigger:
   - hours: '*'
@@ -17,7 +17,7 @@
         }}%'
     service: lcd.print1
 - id: '1581541286811'
-  alias: Spotify Play/pause
+  alias: Button 1 - Spotify Play/pause
   description: ''
   trigger:
   - entity_id: buttons.last_button
@@ -29,7 +29,7 @@
     entity_id: media_player.spotify_jaume_serrats9
     service: media_player.media_play_pause
 - id: '1581541286812'
-  alias: Spotify Previous
+  alias: Button 0 - Spotify Previous
   description: ''
   trigger:
   - entity_id: buttons.last_button
@@ -41,7 +41,7 @@
     entity_id: media_player.spotify_jaume_serrats9
     service: media_player.media_previous_track
 - id: '1581541286813'
-  alias: Spotify Next
+  alias: Button 2 - Spotify Next
   description: ''
   trigger:
   - entity_id: buttons.last_button
@@ -53,7 +53,7 @@
     entity_id: media_player.spotify_jaume_serrats9
     service: media_player.media_next_track
 - id: '1581542900662'
-  alias: Yeelight Toggle
+  alias: Button 5 - Yeelight Toggle
   description: ''
   trigger:
   - entity_id: buttons.last_button
@@ -65,7 +65,7 @@
     entity_id: light.bedroom_yeelight
     service: light.toggle
 - id: '1581544120342'
-  alias: Yeelight NORMAL
+  alias: Button 6 - Yeelight NORMAL
   description: ''
   trigger:
   - entity_id: buttons.last_button
@@ -75,7 +75,7 @@
   action:
   - scene: scene.day_light
 - id: '1581544196322'
-  alias: Yeelight RED
+  alias: Button 7 - Yeelight RED
   description: ''
   trigger:
   - entity_id: buttons.last_button
@@ -85,7 +85,7 @@
   action:
   - scene: scene.room
 - id: '1582495379885'
-  alias: LCD toggle backlight
+  alias: Button 3 - LCD backlight
   description: ''
   trigger:
   - entity_id: buttons.last_button
@@ -120,7 +120,7 @@
   action:
   - service: cron.update_smbc
 - id: '1582743767819'
-  alias: Octoprint LCD
+  alias: 'LCD 3 - Octoprint '
   description: ''
   trigger:
   - entity_id: sensor.octoprint_job_percentage
