@@ -34,7 +34,12 @@ notify:
   - name: Telegram notification
     platform: telegram
     chat_id: !secret telegram_chat_id
-    
+
+octoprint:
+  host: 10.0.5.3
+  api_key: !secret octoprint_api_key
+  bed: true
+  
 # Text to speech
 tts:
   - platform: google_translate

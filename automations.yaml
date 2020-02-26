@@ -119,3 +119,23 @@
   condition: []
   action:
   - service: cron.update_smbc
+- id: '1582743767819'
+  alias: Octoprint LCD
+  description: ''
+  trigger:
+  - entity_id: sensor.octoprint_job_percentage
+    from: '*'
+    platform: state
+    to: '*'
+  - entity_id: sensor.octoprint_time_remaining
+    for: '*'
+    from: '*'
+    platform: state
+    to: '*'
+  condition: []
+  action:
+  - data:
+      text: 'Print: {{ states("sensor.octoprint_job_percentage").split(".")[0] }}%
+        - {{ states("sensor.octoprint_time_elapsed") | int | timestamp_custom("%H:%M",
+        0) }}'
+    service: lcd.print3
