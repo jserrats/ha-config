@@ -136,6 +136,22 @@
   action:
   - data:
       text: 'Print: {{ states("sensor.octoprint_job_percentage").split(".")[0] }}%
-        - {{ states("sensor.octoprint_time_elapsed") | int | timestamp_custom("%H:%M",
+        - {{ states("sensor.octoprint_time_remaining") | int | timestamp_custom("%H:%M",
         0) }}'
     service: lcd.print3
+- id: '1582747396071'
+  alias: ara
+  description: ''
+  trigger:
+  - entity_id: cron.ara_article
+    from: '*'
+    platform: state
+    to: '*'
+  condition: []
+  action:
+  - data:
+      url: '{{ state_attr("cron.ara_article", "image") }}'
+    service: telegram_bot.send_photo
+  - data:
+      message: '{{ state_attr("cron.ara_article", "text") }}'
+    service: telegram_bot.send_message

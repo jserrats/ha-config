@@ -9,8 +9,9 @@ def setup(hass, config):
     smbc_entity_id_title = "cron.smbc_title"
     smbc_entity_id_image = "cron.smbc_image"
 
-    ara_entity_id_title = "cron.ara_text"
-    ara_entity_id_image = "cron.ara_image"
+    ara_entity_id_article = "cron.ara_article"
+    ara_attribute_text = "text"
+    ara_attribute_image = "image"
 
     def update_smbc(call):
         title, image = _get_last_comic()
@@ -21,15 +22,16 @@ def setup(hass, config):
         today_article = _get_last_article()
         title, body, picture = _extract_info_from_article(today_article)
         text = '*' + title + '*\n' + body
-    #   hass.states.set(ara_entity_id_image, picture)
+        attributes = {ara_attribute_text: text, ara_attribute_image: picture}
+        hass.states.set(ara_entity_id_article, today_article, attributes)
     #    hass.states.set(ara_entity_id_title, text)
 
     # initial state
     update_smbc(None)
-    #update_ara(None)
+    update_ara(None)
 
     hass.services.register(DOMAIN, "update_smbc", update_smbc)
-    #hass.services.register(DOMAIN, "update_ara", update_ara)
+    hass.services.register(DOMAIN, "update_ara", update_ara)
 
     # Return boolean to indicate that initialization was successfully.
     return True
@@ -70,6 +72,8 @@ def _extract_info_from_article(url):
 
     try:
         picture = soup.findAll('a', {'class', 'mg dummy lightbox'})[0]['href']
+        if not picture.startswith("https://ara.cat"):
+            picture = "https://ara.cat" + picture
     except IndexError:
         picture = ""
 
