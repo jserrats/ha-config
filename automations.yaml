@@ -13,7 +13,7 @@
     service: lcd.print0
   - data:
       text: '{{ state_attr(''weather.home'', ''temperature'') }}C {{ state_attr(''weather.home'',''humidity'')
-        }}% {{ states(''sensor.indoor_temperature'')[:-1] }}C {{ states(''sensor.indoor_humidity'').split(''.'')[0]
+        }}% {{ states(''sensor.indoor_temperature'') }}C {{ states(''sensor.indoor_humidity'').split(''.'')[0]
         }}%'
     service: lcd.print1
 - id: '1581541286811'
