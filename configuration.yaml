@@ -92,6 +92,17 @@ switch:
     qos: 0
     retain: true
 
+binary_sensor:
+  - platform: ping
+    host: 10.0.5.10
+    name: Octane
+  - platform: ping
+    host: 10.0.5.6
+    name: Oneplus Jaume
+  - platform: ping
+    host: 10.0.5.7
+    name: Nibbler
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml

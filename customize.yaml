@@ -3,11 +3,3 @@ switch.power_switch_1:
   assumed_state: false
 switch.power_switch_0:
   assumed_state: false
-indoor_meteo.temperature:
-  friendly_name: Indoor Temperature
-  unit_of_measurement: ºC
-indoor_meteo.pressure:
-  friendly_name: Indoor Pressure
-  unit_of_measurement: hPa
-indoor_meteo.humidity:
-  unit_of_measurement: '%'
