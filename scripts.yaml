@@ -15,3 +15,24 @@
   - entity_id: media_player.spotify_jaume_serrats9
     service: media_player.media_pause
   - scene: scene.room
+'1583057164355':
+  alias: Desk off
+  sequence:
+  - data: {}
+    entity_id: media_player.spotify_jaume_serrats9
+    service: media_player.media_pause
+  - entity_id: switch.octane_wol
+    service: switch.turn_off
+  - entity_id: switch.nibbler_wol
+    service: switch.turn_off
+  - entity_id: switch.backlight
+    service: switch.turn_off
+'1583058928601':
+  alias: Desk On
+  sequence:
+  - entity_id: switch.backlight
+    service: switch.turn_on
+  - entity_id: switch.octane_wol
+    service: switch.turn_on
+  - entity_id: switch.nibbler_wol
+    service: switch.turn_on
