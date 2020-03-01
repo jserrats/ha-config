@@ -119,6 +119,7 @@
   condition: []
   action:
   - service: cron.update_smbc
+  - service: cron.update_ara
 - id: '1582743767819'
   alias: 'LCD 3 - Octoprint '
   description: ''
