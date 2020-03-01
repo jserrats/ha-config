@@ -91,6 +91,21 @@ switch:
     state_off: "off"
     qos: 0
     retain: true
+  - platform: wake_on_lan
+    mac: "b4:2e:99:16:4d:7c"
+    name: "Octane WoL"
+    host: "10.0.5.10"
+    turn_off:
+      service: shell_command.octane_off
+  - platform: wake_on_lan
+    mac: "84:39:be:17:02:21"
+    name: "Nibbler WoL"
+    host: "10.0.5.7"
+    turn_off:
+      service: shell_command.nibbler_off
+shell_command:
+  octane_off: 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/id_rsa_ha jaume@10.0.5.10 shutdown /h /f'
+  nibbler_off: 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/id_rsa_ha jaume@10.0.5.7 sudo poweroff'
 
 binary_sensor:
   - platform: ping
