@@ -15,20 +15,29 @@
     service: script.1583057164355
   - scene: scene.room
 '1583057164355':
-  alias: Desk off
+  alias: Desk OFF
   sequence:
   - data: {}
     entity_id: media_player.spotify_jaume_serrats9
     service: media_player.media_pause
   - entity_id: switch.octane_wol
-    service: switch.turn_off
+    service: shell_command.nibbler_off
   - entity_id: switch.nibbler_wol
-    service: switch.turn_off
+    service: shell_command.octane_off
   - entity_id: switch.backlight
     service: switch.turn_off
+  - timeout: 00:00:30
+    wait_template: '{{ is_state(''switch.nibbler_wol'', ''off'') }}'
+  - timeout: 00:00:30
+    wait_template: '{{ is_state(''switch.octane_wol'', ''off'') }}'
+  - delay: 00:00:30
+  - entity_id: switch.power_switch_0
+    service: switch.turn_off
 '1583058928601':
-  alias: Desk On
+  alias: Desk ON
   sequence:
+  - entity_id: switch.power_switch_0
+    service: switch.turn_on
   - entity_id: switch.backlight
     service: switch.turn_on
   - entity_id: switch.octane_wol
