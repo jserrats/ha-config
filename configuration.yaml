@@ -60,6 +60,10 @@ sensor:
     name: "Indoor pressure"
     value_template: '{{ "{:2.1f}".format(float(value_json.pressure)) }}'
     unit_of_measurement: 'hPa'
+  - platform: github
+    access_token: !secret github_access_token
+    repositories:
+      - path: 'jserrats/notes'
 
 switch:
   - platform: template
@@ -71,6 +75,14 @@ switch:
           service: lcd.backlight_on
         turn_off:
           service: lcd.backlight_off
+      desk:
+        friendly_name: Desk
+        value_template: '{{ is_state("binary_sensor.nibbler","on") or is_state("binary_sensor.octane","on") }}'
+        turn_on:
+          service: script.1583058928601
+        turn_off:
+          service: script.1583057164355
+    
   - platform: mqtt
     name: "Power Switch 0"
     command_topic: "domos/arduino/power/0"
