@@ -17,6 +17,9 @@
 '1583057164355':
   alias: Desk OFF
   sequence:
+  - data:
+      text: "Powering off systems"
+    service: lcd.print3
   - data: {}
     entity_id: media_player.spotify_jaume_serrats9
     service: media_player.media_pause
@@ -24,23 +27,34 @@
     service: shell_command.nibbler_off
   - entity_id: switch.nibbler_wol
     service: shell_command.octane_off
+  - timeout: 00:00:30
+    wait_template: '{{ is_state(''switch.nibbler_wol'', ''off'') and is_state(''switch.octane_wol'', ''off'') }}'
+  - data:
+      text: "Systems offline"
+    service: lcd.print3
+  - delay: 00:00:30
   - entity_id: switch.backlight
     service: switch.turn_off
-  - timeout: 00:00:30
-    wait_template: '{{ is_state(''switch.nibbler_wol'', ''off'') }}'
-  - timeout: 00:00:30
-    wait_template: '{{ is_state(''switch.octane_wol'', ''off'') }}'
-  - delay: 00:00:30
   - entity_id: switch.power_switch_0
     service: switch.turn_off
+  - data:
+      text: ""
+    service: lcd.print3
 '1583058928601':
   alias: Desk ON
   sequence:
   - entity_id: switch.power_switch_0
     service: switch.turn_on
+  - data:
+      text: Welcome Jaume
+    service: lcd.print3
   - entity_id: switch.backlight
     service: switch.turn_on
   - entity_id: switch.octane_wol
     service: switch.turn_on
-  - entity_id: switch.nibbler_wol
+  - data: {}
+    entity_id: switch.nibbler_wol
     service: switch.turn_on
+  - data:
+      text: ''
+    service: lcd.print3
