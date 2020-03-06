@@ -156,3 +156,44 @@
   - data:
       message: '{{ state_attr("cron.ara_article", "text") }}'
     service: telegram_bot.send_message
+- id: '1583524050606'
+  alias: Cine mode
+  description: ''
+  trigger:
+  - entity_id: media_player.chromechastity
+    from: 'off'
+    platform: state
+    to: '*'
+  - entity_id: media_player.chromechastity
+    from: '*'
+    platform: state
+    to: playing
+  condition: []
+  action:
+  - entity_id: light.bedroom_yeelight
+    service: light.turn_off
+- id: '1583524327623'
+  alias: Button 4 - Desk Toggle
+  description: ''
+  trigger:
+  - entity_id: buttons.last_button
+    from: '*'
+    platform: state
+    to: '4'
+  condition: []
+  action:
+  - entity_id: switch.desk
+    service: switch.toggle
+- id: '1583530624338'
+  alias: LCD 2 - Spotify
+  description: ''
+  trigger:
+  - entity_id: media_player.spotify_jaume_serrats9
+    from: '*'
+    platform: state
+    to: playing
+  condition: []
+  action:
+  - data:
+      text: '{{ state_attr("media_player.spotify_jaume_serrats9", "media_title") }}'
+    service: lcd.print3
