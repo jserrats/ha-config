@@ -39,7 +39,13 @@ octoprint:
   host: 10.0.5.3
   api_key: !secret octoprint_api_key
   bed: true
-  
+
+camera:
+  - platform: generic
+    name: Octopi Camera
+    stream_source: http://10.0.5.3/webcam/?action=stream
+    still_image_url: http://10.0.5.3:8080/?action=snapshot
+
 # Text to speech
 tts:
   - platform: google_translate
@@ -64,6 +70,20 @@ sensor:
     access_token: !secret github_access_token
     repositories:
       - path: 'jserrats/notes'
+  - platform: template
+    sensors:
+      outdoor_temp:
+        friendly_name: "Outdoor temperature"
+        unit_of_measurement: °C
+        value_template: '{{ state_attr("weather.home","temperature") }}'
+      outdoor_hum:
+        friendly_name: "Outdoor humidity"
+        unit_of_measurement: '%'
+        value_template: '{{ state_attr("weather.home","humidity") }}'
+      outdoor_pressure:
+        friendly_name: "Outdoor pressure"
+        unit_of_measurement: 'hPa'
+        value_template: '{{ state_attr("weather.home","pressure") }}'
 
 switch:
   - platform: template
