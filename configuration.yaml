@@ -21,6 +21,11 @@ spotify:
   client_id: !secret spotify_client_id
   client_secret: !secret spotify_client_secret
 
+media_player:
+  - platform: mpd
+    host: 10.0.5.7
+    name: Nibbler Mopidy
+
 buttons:
 lcd:
 cron:
@@ -117,6 +122,16 @@ switch:
     name: "Power Switch 1"
     command_topic: "domos/arduino/power/1"
     state_topic: "domos/arduino/power/1"
+    payload_on: "on"
+    payload_off: "off"
+    state_on: "on"
+    state_off: "off"
+    qos: 0
+    retain: true
+  - platform: mqtt
+    name: "Ambient light"
+    command_topic: "domos/arduino/pin/0"
+    state_topic: "domos/arduino/pin/0"
     payload_on: "on"
     payload_off: "off"
     state_on: "on"
