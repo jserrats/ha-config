@@ -57,20 +57,23 @@ tts:
 
 sensor:
   - platform: mqtt
-    state_topic: "domos/info/meteo"
+    state_topic: "domos/arduino/info/meteo"
     name: "Indoor temperature"
     value_template: '{{ "{:2.1f}".format(float(value_json.temperature)) }}'
     unit_of_measurement: '°C'
   - platform: mqtt
-    state_topic: "domos/info/meteo"
+    state_topic: "domos/arduino/info/meteo"
     name: "Indoor humidity"
     value_template: '{{ "{:2.1f}".format(float(value_json.humidity)) }}'
     unit_of_measurement: '%'
   - platform: mqtt
-    state_topic: "domos/info/meteo"
+    state_topic: "domos/arduino/info/meteo"
     name: "Indoor pressure"
     value_template: '{{ "{:2.1f}".format(float(value_json.pressure)) }}'
     unit_of_measurement: 'hPa'
+  - platform: mqtt
+    state_topic: "domos/arduino/info/button"
+    name: "Last button pressed"
   - platform: github
     access_token: !secret github_access_token
     repositories:

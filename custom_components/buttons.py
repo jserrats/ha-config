@@ -6,7 +6,7 @@ DEPENDENCIES = ["mqtt"]
 
 
 CONF_TOPIC = "topic"
-DEFAULT_TOPIC = "domos/button"
+DEFAULT_TOPIC = "domos/arduino/info/button"
 
 
 def setup(hass, config):
