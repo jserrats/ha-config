@@ -26,7 +26,6 @@ media_player:
     host: 10.0.5.7
     name: Nibbler Mopidy
 
-buttons:
 lcd:
 cron:
 

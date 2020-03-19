@@ -20,9 +20,9 @@
   alias: Button 1 - Spotify Play/pause
   description: ''
   trigger:
-  - entity_id: buttons.last_button
-    platform: state
-    to: '1'
+  - payload: '1'
+    platform: mqtt
+    topic: domos/arduino/info/button
   condition: []
   action:
   - data: {}
@@ -32,9 +32,9 @@
   alias: Button 0 - Spotify Previous
   description: ''
   trigger:
-  - entity_id: buttons.last_button
-    platform: state
-    to: '0'
+  - payload: '0'
+    platform: mqtt
+    topic: domos/arduino/info/button
   condition: []
   action:
   - data: {}
@@ -44,9 +44,9 @@
   alias: Button 2 - Spotify Next
   description: ''
   trigger:
-  - entity_id: buttons.last_button
-    platform: state
-    to: '2'
+  - payload: '2'
+    platform: mqtt
+    topic: domos/arduino/info/button
   condition: []
   action:
   - data: {}
@@ -56,9 +56,9 @@
   alias: Button 5 - Yeelight Toggle
   description: ''
   trigger:
-  - entity_id: buttons.last_button
-    platform: state
-    to: '5'
+  - payload: '5'
+    platform: mqtt
+    topic: domos/arduino/info/button
   condition: []
   action:
   - data: {}
@@ -68,9 +68,9 @@
   alias: Button 6 - Yeelight NORMAL
   description: ''
   trigger:
-  - entity_id: buttons.last_button
-    platform: state
-    to: '6'
+  - payload: '6'
+    platform: mqtt
+    topic: domos/arduino/info/button
   condition: []
   action:
   - scene: scene.day_light
@@ -78,9 +78,9 @@
   alias: Button 7 - Yeelight RED
   description: ''
   trigger:
-  - entity_id: buttons.last_button
-    platform: state
-    to: '7'
+  - payload: '7'
+    platform: mqtt
+    topic: domos/arduino/info/button
   condition: []
   action:
   - scene: scene.room
@@ -88,9 +88,9 @@
   alias: Button 3 - LCD backlight
   description: ''
   trigger:
-  - entity_id: buttons.last_button
-    platform: state
-    to: '3'
+  - payload: '3'
+    platform: mqtt
+    topic: domos/arduino/info/button
   condition: []
   action:
   - service: lcd.backlight_toggle
@@ -176,10 +176,9 @@
   alias: Button 4 - Desk Toggle
   description: ''
   trigger:
-  - entity_id: buttons.last_button
-    from: '*'
-    platform: state
-    to: '4'
+  - payload: '4'
+    platform: mqtt
+    topic: domos/arduino/info/button
   condition: []
   action:
   - entity_id: switch.desk
@@ -197,3 +196,13 @@
   - data:
       text: '{{ state_attr("media_player.spotify_jaume_serrats9", "media_title") }}'
     service: lcd.print3
+- id: '1584559888212'
+  alias: test
+  description: ''
+  trigger:
+  - platform: mqtt
+    topic: domos/bedroom/switch
+  condition: []
+  action:
+  - entity_id: light.bedroom_yeelight
+    service: light.toggle
