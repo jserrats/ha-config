@@ -206,3 +206,17 @@
   action:
   - entity_id: light.bedroom_yeelight
     service: light.toggle
+- id: '1584735448131'
+  alias: Printer finished
+  description: ''
+  trigger:
+  - entity_id: sensor.octoprint_time_remaining
+    from: '*'
+    platform: state
+    to: '0'
+  condition: []
+  action:
+  - service: script.1584734470207
+  - data:
+      text: ''
+    service: lcd.print3

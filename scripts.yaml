@@ -63,3 +63,18 @@
   - data:
       text: ''
     service: lcd.print3
+'1584734470207':
+  alias: Yeelight notification
+  sequence:
+  - data:
+      action: recover
+      count: 1
+      transitions:
+      - RGBTransition:
+        - 204
+        - 100
+        - 255
+        - 1000
+        - 100
+    entity_id: light.bedroom_yeelight
+    service: yeelight.start_flow
