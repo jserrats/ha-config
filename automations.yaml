@@ -216,6 +216,7 @@
     to: '0'
   condition: []
   action:
+  - delay: 00:00:05
   - service: script.1584734470207
   - data:
       text: ''
