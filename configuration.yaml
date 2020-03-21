@@ -17,6 +17,25 @@ yeelight:
     10.0.5.5:
       name: Bedroom yeelight
 
+light:
+  - platform: template
+    lights:
+      ambient_light:  
+        friendly_name: "Ambient light"
+        turn_on:
+          service: mqtt.publish
+          data:
+            topic: "domos/arduino/pin/0"
+            payload: "on"
+            qos: 2
+            retain: true
+        turn_off:
+          service: mqtt.publish
+          data:
+            topic: "domos/arduino/pin/0"
+            payload: "off"
+            qos: 2
+            retain: true
 spotify:
   client_id: !secret spotify_client_id
   client_secret: !secret spotify_client_secret
@@ -124,16 +143,6 @@ switch:
     name: "Power Switch 1"
     command_topic: "domos/arduino/power/1"
     state_topic: "domos/arduino/power/1"
-    payload_on: "on"
-    payload_off: "off"
-    state_on: "on"
-    state_off: "off"
-    qos: 0
-    retain: true
-  - platform: mqtt
-    name: "Ambient light"
-    command_topic: "domos/arduino/pin/0"
-    state_topic: "domos/arduino/pin/0"
     payload_on: "on"
     payload_off: "off"
     state_on: "on"
