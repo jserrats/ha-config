@@ -12,12 +12,6 @@
     service: media_player.play_media
   - scene: scene.mood_light_2
   - service: lcd.backlight_off
-'1582558800897':
-  alias: Bona nit
-  sequence:
-  - data: {}
-    service: script.1583057164355
-  - scene: scene.room
 '1583057164355':
   alias: Desk OFF
   sequence:
