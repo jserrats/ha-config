@@ -1,9 +1,13 @@
 - id: '1582498679601'
   name: Night light
   entities:
+    light.ambient_light:
+      friendly_name: Ambient light
+      state: 'off'
+      supported_features: 0
     light.bedroom_yeelight:
       brightness: 13
-      color_temp: 250
+      color_temp: 302
       effect_list:
       - Strobe color
       - Police
@@ -23,10 +27,10 @@
       - Slow Temp
       - Stop
       flowing: false
-      friendly_name: Jaume yeelight
+      friendly_name: Bedroom yeelight
       hs_color:
-      - 15
-      - 72.157
+      - 14.919
+      - 72.549
       max_mireds: 588
       min_mireds: 153
       rgb_color:
@@ -41,6 +45,10 @@
 - id: '1582499043050'
   name: Day Light
   entities:
+    light.ambient_light:
+      friendly_name: Ambient light
+      state: 'off'
+      supported_features: 0
     light.bedroom_yeelight:
       brightness: 255
       color_temp: 302
@@ -55,6 +63,10 @@
 - id: '1584225751090'
   name: Mood light
   entities:
+    light.ambient_light:
+      friendly_name: Ambient light
+      state: 'on'
+      supported_features: 0
     light.bedroom_yeelight:
       effect_list:
       - Strobe color
@@ -80,6 +92,3 @@
       min_mireds: 153
       state: 'off'
       supported_features: 63
-    switch.ambient_light:
-      friendly_name: Ambient light
-      state: 'on'
