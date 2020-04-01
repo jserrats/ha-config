@@ -23,6 +23,9 @@
   - payload: '1'
     platform: mqtt
     topic: domos/arduino/info/button
+  - payload: '5'
+    platform: mqtt
+    topic: domos/bedroom/multiple-switch
   condition: []
   action:
   - data: {}
@@ -35,6 +38,9 @@
   - payload: '0'
     platform: mqtt
     topic: domos/arduino/info/button
+  - payload: '4'
+    platform: mqtt
+    topic: domos/bedroom/multiple-switch
   condition: []
   action:
   - data: {}
@@ -47,23 +53,27 @@
   - payload: '2'
     platform: mqtt
     topic: domos/arduino/info/button
+  - payload: '6'
+    platform: mqtt
+    topic: domos/bedroom/multiple-switch
   condition: []
   action:
   - data: {}
     entity_id: media_player.spotify_jaume_serrats9
     service: media_player.media_next_track
 - id: '1581542900662'
-  alias: Button 5 - Yeelight Toggle
+  alias: Button 5 - Lights off
   description: ''
   trigger:
   - payload: '5'
     platform: mqtt
     topic: domos/arduino/info/button
+  - payload: '11'
+    platform: mqtt
+    topic: domos/bedroom/multiple-switch
   condition: []
   action:
-  - data: {}
-    entity_id: light.bedroom_yeelight
-    service: light.toggle
+  - scene: scene.lights_off
 - id: '1581544120342'
   alias: Button 6 - Yeelight NORMAL
   description: ''
@@ -71,6 +81,9 @@
   - payload: '6'
     platform: mqtt
     topic: domos/arduino/info/button
+  - payload: '0'
+    platform: mqtt
+    topic: domos/bedroom/multiple-switch
   condition: []
   action:
   - scene: scene.day_light
@@ -81,6 +94,9 @@
   - payload: '7'
     platform: mqtt
     topic: domos/arduino/info/button
+  - payload: '10'
+    platform: mqtt
+    topic: domos/bedroom/multiple-switch
   condition: []
   action:
   - scene: scene.room
@@ -179,6 +195,9 @@
   - payload: '4'
     platform: mqtt
     topic: domos/arduino/info/button
+  - payload: '1'
+    platform: mqtt
+    topic: domos/bedroom/multiple-switch
   condition: []
   action:
   - entity_id: switch.desk
@@ -221,3 +240,37 @@
   - data:
       text: ''
     service: lcd.print3
+- id: '1584908069818'
+  alias: Buttons - Mood light
+  description: ''
+  trigger:
+  - payload: '9'
+    platform: mqtt
+    topic: domos/bedroom/multiple-switch
+  condition: []
+  action:
+  - scene: scene.mood_light_2
+- id: '1584909339601'
+  alias: Buttons - Mood light
+  description: ''
+  trigger:
+  - payload: '8'
+    platform: mqtt
+    topic: domos/arduino/info/button
+  - payload: '9'
+    platform: mqtt
+    topic: domos/bedroom/multiple-switch
+  condition: []
+  action:
+  - scene: scene.mood_light_2
+- id: '1585763463374'
+  alias: Media control bedside
+  description: ''
+  trigger:
+  - payload: '8'
+    platform: mqtt
+    topic: domos/bedroom/multiple-switch
+  condition: []
+  action:
+  - entity_id: media_player.chromechastity
+    service: media_player.media_play_pause

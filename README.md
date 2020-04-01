@@ -20,7 +20,7 @@
 | Actions    |                  |             |
 | ---------- | ---------------- | ----------- |
 | light off  | day scene        | night scene |
-| mood scene | ~                | ~           |
+| mood scene | toggle chromecast| ~           |
 | spoti prev | spoti play pause | spoti next  |
 | ~          | ~                | desk toggle |
 
