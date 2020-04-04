@@ -7,7 +7,7 @@ homeassistant:
   
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
-  base_url: raspberry.lan:8123
+  base_url: 10.0.1.1:8123
 
 pi_hole:
   - host: 10.0.1.1
@@ -16,6 +16,8 @@ yeelight:
   devices:
     10.0.5.5:
       name: Bedroom yeelight
+
+media_extractor:
 
 light:
   - platform: template
