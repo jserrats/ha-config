@@ -274,3 +274,21 @@
   action:
   - entity_id: media_player.chromechastity
     service: media_player.media_play_pause
+- id: '1586007651403'
+  alias: prank
+  description: ''
+  trigger:
+  - entity_id: media_player.chromecast0733
+    from: '*'
+    platform: state
+    to: '*'
+  condition:
+  - condition: template
+    value_template: '{{ state_attr(''media_player.chromecast0733'',''media_content_id'')
+      == "0ZjV5L00tvA" }}'
+  action:
+  - data:
+      media_content_id: https://www.youtube.com/watch?v=9tUk8eZBuKY
+      media_content_type: video/youtube
+    entity_id: media_player.chromecast0733
+    service: media_extractor.play_media
