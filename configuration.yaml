@@ -130,7 +130,17 @@ switch:
           service: script.1583058928601
         turn_off:
           service: script.1583057164355
-    
+
+  - platform: mqtt
+    name: "Led Strip"
+    command_topic: "domos/strip"
+    state_topic: "domos/info/strip"
+    payload_on: "on"
+    payload_off: "off"
+    state_on: "on"
+    state_off: "off"
+    qos: 0
+    retain: true
   - platform: mqtt
     name: "Power Switch 0"
     command_topic: "domos/arduino/power/0"
@@ -177,6 +187,14 @@ binary_sensor:
   - platform: ping
     host: 10.0.5.7
     name: Nibbler
+
+input_select:
+  strip_mode:
+    name: Led Strip mode
+    options:
+      - "music"
+      - "rainbow"
+      - "clock"
 
 group: !include groups.yaml
 automation: !include automations.yaml

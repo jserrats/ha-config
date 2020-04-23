@@ -292,3 +292,27 @@
       media_content_type: video/youtube
     entity_id: media_player.chromecast0733
     service: media_extractor.play_media
+- id: '1587670387626'
+  alias: Led Strip in
+  description: ''
+  trigger:
+  - platform: mqtt
+    topic: domos/info/strip/mode
+  condition: []
+  action:
+  - data_template:
+      entity_id: input_select.strip_mode
+      option: '{{ trigger.payload }}'
+    service: input_select.select_option
+- id: '1587670672503'
+  alias: Led Strip out
+  description: ''
+  trigger:
+  - entity_id: input_select.strip_mode
+    platform: state
+  condition: []
+  action:
+  - data:
+      payload_template: '{{ states(''input_select.strip_mode'') }}'
+      topic: domos/strip/mode
+    service: mqtt.publish

@@ -72,3 +72,10 @@
         - 100
     entity_id: light.bedroom_yeelight
     service: yeelight.start_flow
+'1587673675688':
+  alias: Led Strip music_effect
+  sequence:
+  - data:
+      payload: music_effect
+      topic: domos/strip/mode
+    service: mqtt.publish
