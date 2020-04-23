@@ -18,6 +18,8 @@
   - data:
       text: Powering off systems
     service: lcd.print3
+  - entity_id: switch.led_strip
+    service: switch.turn_off
   - data: {}
     entity_id: media_player.spotify_jaume_serrats9
     service: media_player.media_pause
@@ -32,6 +34,7 @@
       text: Systems offline
     service: lcd.print3
   - delay: 00:00:30
+  - service: script.1587674098111
   - entity_id: switch.backlight
     service: switch.turn_off
   - entity_id: switch.power_switch_0
@@ -57,6 +60,9 @@
   - data:
       text: ''
     service: lcd.print3
+  - service: script.1587674098111
+  - entity_id: switch.led_strip
+    service: switch.turn_on
 '1584734470207':
   alias: Yeelight notification
   sequence:
@@ -78,4 +84,11 @@
   - data:
       payload: music_effect
       topic: domos/strip/mode
+    service: mqtt.publish
+'1587674098111':
+  alias: Led Strip notification - blue
+  sequence:
+  - data:
+      payload: blue
+      topic: domos/strip/notification
     service: mqtt.publish
