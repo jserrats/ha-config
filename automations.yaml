@@ -26,6 +26,9 @@
   - payload: '5'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
+  - payload: '1'
+    platform: mqtt
+    topic: domos/desk/button
   condition: []
   action:
   - data: {}
@@ -41,6 +44,9 @@
   - payload: '4'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
+  - payload: '0'
+    platform: mqtt
+    topic: domos/desk/button
   condition: []
   action:
   - data: {}
@@ -56,6 +62,9 @@
   - payload: '6'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
+  - payload: '2'
+    platform: mqtt
+    topic: domos/desk/button
   condition: []
   action:
   - data: {}
@@ -71,6 +80,9 @@
   - payload: '11'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
+  - payload: '3'
+    platform: mqtt
+    topic: domos/desk/button
   condition: []
   action:
   - scene: scene.lights_off
@@ -84,6 +96,9 @@
   - payload: '0'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
+  - payload: '4'
+    platform: mqtt
+    topic: domos/desk/button
   condition: []
   action:
   - scene: scene.day_light
@@ -198,6 +213,9 @@
   - payload: '1'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
+  - payload: '7'
+    platform: mqtt
+    topic: domos/desk/button
   condition: []
   action:
   - entity_id: switch.desk
@@ -240,16 +258,6 @@
   - data:
       text: ''
     service: lcd.print3
-- id: '1584908069818'
-  alias: Buttons - Mood light
-  description: ''
-  trigger:
-  - payload: '9'
-    platform: mqtt
-    topic: domos/bedroom/multiple-switch
-  condition: []
-  action:
-  - scene: scene.mood_light_2
 - id: '1584909339601'
   alias: Buttons - Mood light
   description: ''
@@ -260,6 +268,9 @@
   - payload: '9'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
+  - payload: '5'
+    platform: mqtt
+    topic: domos/desk/button
   condition: []
   action:
   - scene: scene.mood_light_2
@@ -285,7 +296,7 @@
   condition:
   - condition: template
     value_template: '{{ state_attr(''media_player.chromecast0733'',''media_content_id'')
-      == "0ZjV5L00tvA" }}'
+      == "TUF3C3q0R-0" }}'
   action:
   - data:
       media_content_id: https://www.youtube.com/watch?v=9tUk8eZBuKY
