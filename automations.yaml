@@ -17,12 +17,9 @@
         }}%'
     service: lcd.print1
 - id: '1581541286811'
-  alias: Button 1 - Spotify Play/pause
+  alias: Button - Spotify Play/pause
   description: ''
   trigger:
-  - payload: '1'
-    platform: mqtt
-    topic: domos/arduino/info/button
   - payload: '5'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
@@ -35,12 +32,9 @@
     entity_id: media_player.spotify_jaume_serrats9
     service: media_player.media_play_pause
 - id: '1581541286812'
-  alias: Button 0 - Spotify Previous
+  alias: Button  - Spotify Previous
   description: ''
   trigger:
-  - payload: '0'
-    platform: mqtt
-    topic: domos/arduino/info/button
   - payload: '4'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
@@ -53,12 +47,9 @@
     entity_id: media_player.spotify_jaume_serrats9
     service: media_player.media_previous_track
 - id: '1581541286813'
-  alias: Button 2 - Spotify Next
+  alias: Button  - Spotify Next
   description: ''
   trigger:
-  - payload: '2'
-    platform: mqtt
-    topic: domos/arduino/info/button
   - payload: '6'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
@@ -71,12 +62,9 @@
     entity_id: media_player.spotify_jaume_serrats9
     service: media_player.media_next_track
 - id: '1581542900662'
-  alias: Button 5 - Lights off
+  alias: Button - Lights off
   description: ''
   trigger:
-  - payload: '5'
-    platform: mqtt
-    topic: domos/arduino/info/button
   - payload: '11'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
@@ -87,12 +75,9 @@
   action:
   - scene: scene.lights_off
 - id: '1581544120342'
-  alias: Button 6 - Yeelight NORMAL
+  alias: Button - Yeelight NORMAL
   description: ''
   trigger:
-  - payload: '6'
-    platform: mqtt
-    topic: domos/arduino/info/button
   - payload: '0'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
@@ -103,12 +88,9 @@
   action:
   - scene: scene.day_light
 - id: '1581544196322'
-  alias: Button 7 - Yeelight RED
+  alias: Button - Yeelight RED
   description: ''
   trigger:
-  - payload: '7'
-    platform: mqtt
-    topic: domos/arduino/info/button
   - payload: '10'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
@@ -116,12 +98,12 @@
   action:
   - scene: scene.room
 - id: '1582495379885'
-  alias: Button 3 - LCD backlight
+  alias: Button - LCD backlight
   description: ''
   trigger:
-  - payload: '3'
+  - payload: '6'
     platform: mqtt
-    topic: domos/arduino/info/button
+    topic: domos/desk/button
   condition: []
   action:
   - service: lcd.backlight_toggle
@@ -204,18 +186,12 @@
   - entity_id: light.bedroom_yeelight
     service: light.turn_off
 - id: '1583524327623'
-  alias: Button 4 - Desk Toggle
+  alias: Button - Desk Toggle
   description: ''
   trigger:
-  - payload: '4'
-    platform: mqtt
-    topic: domos/arduino/info/button
   - payload: '1'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
-  - payload: '7'
-    platform: mqtt
-    topic: domos/desk/button
   condition: []
   action:
   - entity_id: switch.desk
@@ -259,12 +235,9 @@
       text: ''
     service: lcd.print3
 - id: '1584909339601'
-  alias: Buttons - Mood light
+  alias: Button - Mood light
   description: ''
   trigger:
-  - payload: '8'
-    platform: mqtt
-    topic: domos/arduino/info/button
   - payload: '9'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
