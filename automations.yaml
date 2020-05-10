@@ -104,6 +104,9 @@
   - payload: '6'
     platform: mqtt
     topic: domos/desk/button
+  - payload: '1'
+    platform: mqtt
+    topic: domos/arduino/button
   condition: []
   action:
   - service: lcd.backlight_toggle
@@ -192,6 +195,9 @@
   - payload: '1'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
+  - payload: '0'
+    platform: mqtt
+    topic: domos/arduino/button
   condition: []
   action:
   - entity_id: switch.desk
@@ -300,3 +306,14 @@
       payload_template: '{{ states(''input_select.strip_mode'') }}'
       topic: domos/strip/mode
     service: mqtt.publish
+- id: '1589109397077'
+  alias: Button - Led strip
+  description: ''
+  trigger:
+  - payload: '7'
+    platform: mqtt
+    topic: domos/desk/button
+  condition: []
+  action:
+  - entity_id: switch.led_strip
+    service: switch.toggle
