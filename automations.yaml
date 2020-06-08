@@ -28,9 +28,10 @@
     topic: domos/desk/button
   condition: []
   action:
-  - data: {}
-    entity_id: media_player.spotify_jaume_serrats9
-    service: media_player.media_play_pause
+  - data:
+      payload: play
+      topic: domos/media/spotify
+    service: mqtt.publish
 - id: '1581541286812'
   alias: Button  - Spotify Previous
   description: ''
@@ -43,9 +44,10 @@
     topic: domos/desk/button
   condition: []
   action:
-  - data: {}
-    entity_id: media_player.spotify_jaume_serrats9
-    service: media_player.media_previous_track
+  - data:
+      payload: previous
+      topic: domos/media/spotify
+    service: mqtt.publish
 - id: '1581541286813'
   alias: Button  - Spotify Next
   description: ''
@@ -58,9 +60,10 @@
     topic: domos/desk/button
   condition: []
   action:
-  - data: {}
-    entity_id: media_player.spotify_jaume_serrats9
-    service: media_player.media_next_track
+  - data:
+      payload: next
+      topic: domos/media/spotify
+    service: mqtt.publish
 - id: '1581542900662'
   alias: Button - Lights off
   description: ''
