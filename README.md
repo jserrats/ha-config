@@ -15,7 +15,7 @@
 | light off  | day scene        | night scene |
 | mood scene | toggle chromecast| ~           |
 | spoti prev | spoti play pause | spoti next  |
-| ~          | ~                | desk toggle |
+| fan        | ~                | desk toggle |
 
 | Mqtt |     |     |
 | ---- | --- | --- |
