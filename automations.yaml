@@ -219,11 +219,12 @@
       text: '{{ state_attr("media_player.spotify_jaume_serrats9", "media_title") }}'
     service: lcd.print3
 - id: '1584559888212'
-  alias: test
+  alias: Bedroom Light switch
   description: ''
   trigger:
-  - platform: mqtt
-    topic: domos/bedroom/switch
+  - payload: '3'
+    platform: mqtt
+    topic: domos/arduino/button
   condition: []
   action:
   - entity_id: light.bedroom_yeelight
@@ -309,14 +310,17 @@
       payload_template: '{{ states(''input_select.strip_mode'') }}'
       topic: domos/strip/mode
     service: mqtt.publish
-- id: '1589109397077'
-  alias: Button - Led strip
+- id: '1592843603849'
+  alias: Button - Ventilador
   description: ''
   trigger:
   - payload: '7'
     platform: mqtt
     topic: domos/desk/button
+  - payload: '3'
+    platform: mqtt
+    topic: domos/bedroom/multiple-switch
   condition: []
   action:
-  - entity_id: switch.led_strip
+  - entity_id: switch.power_switch_1
     service: switch.toggle
