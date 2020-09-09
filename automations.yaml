@@ -322,5 +322,5 @@
     topic: domos/bedroom/multiple-switch
   condition: []
   action:
-  - entity_id: switch.power_switch_1
+  - entity_id: switch.power_switch_0
     service: switch.toggle

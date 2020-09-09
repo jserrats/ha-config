@@ -37,7 +37,7 @@
   - service: script.1587674098111
   - entity_id: switch.backlight
     service: switch.turn_off
-  - entity_id: switch.power_switch_0
+  - entity_id: switch.power_switch_1
     service: switch.turn_off
   - data:
       text: ''
@@ -45,7 +45,7 @@
 '1583058928601':
   alias: Desk ON
   sequence:
-  - entity_id: switch.power_switch_0
+  - entity_id: switch.power_switch_1
     service: switch.turn_on
   - data:
       text: Welcome Jaume
