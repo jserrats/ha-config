@@ -7,10 +7,7 @@ homeassistant:
   
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
-  base_url: 192.168.0.2:8123
-
-pi_hole:
-  - host: 192.168.0.2
+  base_url: jserrats.xyz:444
 
 yeelight:
   devices:
@@ -56,15 +53,15 @@ notify:
     chat_id: !secret telegram_chat_id
 
 octoprint:
-  host: 192.168.0.3
+  host: octopi.lan
   api_key: !secret octoprint_api_key
   bed: true
 
 camera:
   - platform: generic
     name: Octopi Camera
-    stream_source: http://192.168.0.3/webcam/?action=stream
-    still_image_url: http://192.168.0.3:8080/?action=snapshot
+    stream_source: http://octopi.lan/webcam/?action=stream
+    still_image_url: http://octopi.lan:8080/?action=snapshot
 
 # Text to speech
 tts:
