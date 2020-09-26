@@ -7,14 +7,14 @@ homeassistant:
   
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
-  base_url: 10.0.1.1:8123
+  base_url: 192.168.0.2:8123
 
 pi_hole:
-  - host: 10.0.1.1
+  - host: 192.168.0.2
 
 yeelight:
   devices:
-    10.0.5.5:
+    yeelink-light-color1_miio57615092.lan:
       name: Bedroom yeelight
 
 media_extractor:
@@ -42,11 +42,6 @@ spotify:
   client_id: !secret spotify_client_id
   client_secret: !secret spotify_client_secret
 
-media_player:
-  - platform: mpd
-    host: 10.0.5.7
-    name: Nibbler Mopidy
-
 lcd:
 cron:
 
@@ -61,15 +56,15 @@ notify:
     chat_id: !secret telegram_chat_id
 
 octoprint:
-  host: 10.0.5.3
+  host: 192.168.0.3
   api_key: !secret octoprint_api_key
   bed: true
 
 camera:
   - platform: generic
     name: Octopi Camera
-    stream_source: http://10.0.5.3/webcam/?action=stream
-    still_image_url: http://10.0.5.3:8080/?action=snapshot
+    stream_source: http://192.168.0.3/webcam/?action=stream
+    still_image_url: http://192.168.0.3:8080/?action=snapshot
 
 # Text to speech
 tts:
@@ -164,28 +159,25 @@ switch:
   - platform: wake_on_lan
     mac: "b4:2e:99:16:4d:7c"
     name: "Octane WoL"
-    host: "10.0.5.10"
+    host: "octane.lan"
     turn_off:
       service: shell_command.octane_off
   - platform: wake_on_lan
     mac: "84:39:be:17:02:21"
     name: "Nibbler WoL"
-    host: "10.0.5.7"
+    host: "nibbler.lan"
     turn_off:
       service: shell_command.nibbler_off
 shell_command:
-  octane_off: 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/id_rsa_ha jaume@10.0.5.10 shutdown /h /f'
-  nibbler_off: 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/id_rsa_ha jaume@10.0.5.7 sudo poweroff'
+  octane_off: 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/id_rsa_ha jaume@octane.lan shutdown /h /f'
+  nibbler_off: 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/id_rsa_ha jaume@nibbler.lan sudo poweroff'
 
 binary_sensor:
   - platform: ping
-    host: 10.0.5.10
+    host: octane.lan
     name: Octane
   - platform: ping
-    host: 10.0.5.6
-    name: Oneplus Jaume
-  - platform: ping
-    host: 10.0.5.7
+    host: nibbler.lan
     name: Nibbler
 
 input_select:
