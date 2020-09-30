@@ -12,10 +12,11 @@
       text: '  {{ now().strftime(''%a  %d/%m  %H:%M'') }}  '
     service: lcd.print0
   - data:
-      text: '{{ state_attr(''weather.home'', ''temperature'') }}C {{ state_attr(''weather.home'',''humidity'')
+      text: '{{ state_attr(''weather.can_gaudir'', ''temperature'') }}C {{ state_attr(''weather.can_gaudir'',''humidity'')
         }}% {{ states(''sensor.indoor_temperature'') }}C {{ states(''sensor.indoor_humidity'').split(''.'')[0]
         }}%'
     service: lcd.print1
+  mode: single
 - id: '1581541286811'
   alias: Button - Spotify Play/pause
   description: ''
@@ -26,12 +27,21 @@
   - payload: '1'
     platform: mqtt
     topic: domos/desk/button
+  - platform: state
+    from: 'off'
+    to: 'on'
+    entity_id: binary_sensor.desk1
+  - platform: state
+    from: 'off'
+    to: 'on'
+    entity_id: binary_sensor.bed5
   condition: []
   action:
   - data:
       payload: play
       topic: domos/media/spotify
     service: mqtt.publish
+  mode: single
 - id: '1581541286812'
   alias: Button  - Spotify Previous
   description: ''
@@ -42,12 +52,21 @@
   - payload: '0'
     platform: mqtt
     topic: domos/desk/button
+  - platform: state
+    entity_id: binary_sensor.desk0
+    from: 'off'
+    to: 'on'
+  - platform: state
+    from: 'off'
+    to: 'on'
+    entity_id: binary_sensor.bed4
   condition: []
   action:
   - data:
       payload: previous
       topic: domos/media/spotify
     service: mqtt.publish
+  mode: single
 - id: '1581541286813'
   alias: Button  - Spotify Next
   description: ''
@@ -58,12 +77,25 @@
   - payload: '2'
     platform: mqtt
     topic: domos/desk/button
+  - platform: state
+    entity_id: binary_sensor.desk2
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.bed6
+    from: 'off'
+    to: 'on'
+  - platform: state
+    from: 'off'
+    to: 'on'
+    entity_id: binary_sensor.bed6
   condition: []
   action:
   - data:
       payload: next
       topic: domos/media/spotify
     service: mqtt.publish
+  mode: single
 - id: '1581542900662'
   alias: Button - Lights off
   description: ''
@@ -74,9 +106,18 @@
   - payload: '3'
     platform: mqtt
     topic: domos/desk/button
+  - platform: state
+    entity_id: binary_sensor.desk3
+    from: 'off'
+    to: 'on'
+  - platform: state
+    from: 'off'
+    to: 'on'
+    entity_id: binary_sensor.bed11
   condition: []
   action:
   - scene: scene.lights_off
+  mode: single
 - id: '1581544120342'
   alias: Button - Yeelight NORMAL
   description: ''
@@ -87,9 +128,18 @@
   - payload: '4'
     platform: mqtt
     topic: domos/desk/button
+  - platform: state
+    entity_id: binary_sensor.desk4
+    from: 'off'
+    to: 'on'
+  - platform: state
+    from: 'off'
+    to: 'on'
+    entity_id: binary_sensor.bed0
   condition: []
   action:
   - scene: scene.day_light
+  mode: single
 - id: '1581544196322'
   alias: Button - Yeelight RED
   description: ''
@@ -97,9 +147,14 @@
   - payload: '10'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
+  - platform: state
+    from: 'off'
+    to: 'on'
+    entity_id: binary_sensor.bed10
   condition: []
   action:
-  - scene: scene.room
+  - scene: scene.night_light
+  mode: single
 - id: '1582495379885'
   alias: Button - LCD backlight
   description: ''
@@ -115,7 +170,7 @@
   - service: lcd.backlight_toggle
 - id: '1582577967557'
   alias: smbc
-  description: Send updatet smbc via telegram
+  description: Send updated smbc via telegram
   trigger:
   - entity_id: cron.smbc_image
     from: '*'
@@ -127,6 +182,7 @@
       caption: '{{ states("cron.smbc_title") }}'
       url: '{{ states("cron.smbc_image") }}'
     service: telegram_bot.send_photo
+  mode: single
 - id: '1582578412319'
   alias: cron
   description: ''
@@ -139,6 +195,7 @@
   action:
   - service: cron.update_smbc
   - service: cron.update_ara
+  mode: single
 - id: '1582743767819'
   alias: 'LCD 3 - Octoprint '
   description: ''
@@ -201,10 +258,15 @@
   - payload: '0'
     platform: mqtt
     topic: domos/arduino/button
+  - platform: state
+    entity_id: binary_sensor.bed1
+    from: 'off'
+    to: 'on'
   condition: []
   action:
   - entity_id: switch.desk
     service: switch.toggle
+  mode: single
 - id: '1583530624338'
   alias: LCD 2 - Spotify
   description: ''
@@ -254,9 +316,18 @@
   - payload: '5'
     platform: mqtt
     topic: domos/desk/button
+  - platform: state
+    entity_id: binary_sensor.desk5
+    from: 'off'
+    to: 'on'
+  - platform: state
+    from: 'off'
+    to: 'on'
+    entity_id: binary_sensor.bed9
   condition: []
   action:
-  - scene: scene.mood_light_2
+  - scene: scene.mood_light
+  mode: single
 - id: '1585763463374'
   alias: Media control bedside
   description: ''
@@ -264,6 +335,10 @@
   - payload: '8'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
+  - platform: state
+    from: 'off'
+    to: 'on'
+    entity_id: binary_sensor.bed8
   condition: []
   action:
   - entity_id: media_player.chromechastity
@@ -286,30 +361,6 @@
       media_content_type: video/youtube
     entity_id: media_player.chromecast0733
     service: media_extractor.play_media
-- id: '1587670387626'
-  alias: Led Strip in
-  description: ''
-  trigger:
-  - platform: mqtt
-    topic: domos/info/strip/mode
-  condition: []
-  action:
-  - data_template:
-      entity_id: input_select.strip_mode
-      option: '{{ trigger.payload }}'
-    service: input_select.select_option
-- id: '1587670672503'
-  alias: Led Strip out
-  description: ''
-  trigger:
-  - entity_id: input_select.strip_mode
-    platform: state
-  condition: []
-  action:
-  - data:
-      payload_template: '{{ states(''input_select.strip_mode'') }}'
-      topic: domos/strip/mode
-    service: mqtt.publish
 - id: '1592843603849'
   alias: Button - Ventilador
   description: ''
@@ -320,7 +371,12 @@
   - payload: '3'
     platform: mqtt
     topic: domos/bedroom/multiple-switch
+  - platform: state
+    entity_id: binary_sensor.bed3
+    from: 'off'
+    to: 'on'
   condition: []
   action:
   - entity_id: switch.power_switch_0
     service: switch.toggle
+  mode: single

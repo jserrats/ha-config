@@ -4,10 +4,9 @@ default_config:
 
 homeassistant:
   customize: !include customize.yaml
-  
-# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-http:
-  base_url: jserrats.xyz:444
+
+mqtt:
+  broker: localhost
 
 yeelight:
   devices:
@@ -63,7 +62,17 @@ camera:
     stream_source: http://octopi.lan/webcam/?action=stream
     still_image_url: http://octopi.lan:8080/?action=snapshot
 
-# Text to speech
+glances:
+  - host: octane.lan
+    name: "Octane"
+    verify_ssl: false
+  - host: nibbler.lan
+    name: "Nibbler"
+    verify_ssl: false
+  - host: raspberry.lan
+    name: "Raspberry"
+    verify_ssl: false
+
 tts:
   - platform: google_translate
 
@@ -95,15 +104,19 @@ sensor:
       outdoor_temp:
         friendly_name: "Outdoor temperature"
         unit_of_measurement: °C
-        value_template: '{{ state_attr("weather.home","temperature") }}'
+        value_template: '{{ state_attr("weather.can_gaudir","temperature") }}'
       outdoor_hum:
         friendly_name: "Outdoor humidity"
         unit_of_measurement: '%'
-        value_template: '{{ state_attr("weather.home","humidity") }}'
+        value_template: '{{ state_attr("weather.can_gaudir","humidity") }}'
       outdoor_pressure:
         friendly_name: "Outdoor pressure"
         unit_of_measurement: 'hPa'
-        value_template: '{{ state_attr("weather.home","pressure") }}'
+        value_template: '{{ state_attr("weather.can_gaudir","pressure") }}'
+  - platform: cert_expiry
+    host: netxtcloud.jserrats.xyz
+  - platform: cert_expiry
+    host: jserrats.xyz
 
 switch:
   - platform: template
@@ -122,17 +135,6 @@ switch:
           service: script.1583058928601
         turn_off:
           service: script.1583057164355
-
-  - platform: mqtt
-    name: "Led Strip"
-    command_topic: "domos/strip"
-    state_topic: "domos/info/strip"
-    payload_on: "on"
-    payload_off: "off"
-    state_on: "on"
-    state_off: "off"
-    qos: 0
-    retain: true
   - platform: mqtt
     name: "Power Switch 0"
     command_topic: "domos/arduino/power/0"
@@ -166,6 +168,7 @@ switch:
     turn_off:
       service: shell_command.nibbler_off
 shell_command:
+  # to debug these, log inside the docker and run them manually and see which errors we get
   octane_off: 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/id_rsa_ha jaume@octane.lan shutdown /h /f'
   nibbler_off: 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/id_rsa_ha jaume@nibbler.lan sudo poweroff'
 
@@ -176,14 +179,12 @@ binary_sensor:
   - platform: ping
     host: nibbler.lan
     name: Nibbler
-
-input_select:
-  strip_mode:
-    name: Led Strip mode
-    options:
-      - "music"
-      - "rainbow"
-      - "clock"
+  - platform: ping
+    host: octopi.lan
+    name: Octopi
+  - platform: ping
+    host: raspberry.lan
+    name: Raspberry
 
 group: !include groups.yaml
 automation: !include automations.yaml
