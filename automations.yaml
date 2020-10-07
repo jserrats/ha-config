@@ -233,7 +233,7 @@
       message: '{{ state_attr("cron.ara_article", "text") }}'
     service: telegram_bot.send_message
 - id: '1583524050606'
-  alias: Cine mode
+  alias: Cine mode ON
   description: ''
   trigger:
   - entity_id: media_player.chromechastity
@@ -246,8 +246,8 @@
     to: playing
   condition: []
   action:
-  - entity_id: light.bedroom_yeelight
-    service: light.turn_off
+  - scene: scene.projector_on
+  mode: single
 - id: '1583524327623'
   alias: Button - Desk Toggle
   description: ''
@@ -289,23 +289,10 @@
     topic: domos/arduino/button
   condition: []
   action:
-  - entity_id: light.bedroom_yeelight
-    service: light.toggle
-- id: '1584735448131'
-  alias: Printer finished
-  description: ''
-  trigger:
-  - entity_id: sensor.octoprint_time_remaining
-    from: '*'
-    platform: state
-    to: '0'
-  condition: []
-  action:
-  - delay: 00:00:05
-  - service: script.1584734470207
-  - data:
-      text: ''
-    service: lcd.print3
+  - service: light.toggle
+    data: {}
+    entity_id: light.tradfri_bulb
+  mode: single
 - id: '1584909339601'
   alias: Button - Mood light
   description: ''
@@ -379,4 +366,38 @@
   action:
   - entity_id: switch.power_switch_0
     service: switch.toggle
+  mode: single
+- id: '1601823057377'
+  alias: Cine mode OFF
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: media_player.chromechastity
+    from: '*'
+    to: 'off'
+  - platform: state
+    entity_id: media_player.chromechastity
+    from: '*'
+    to: unavailable
+  condition: []
+  action:
+  - type: turn_off
+    device_id: dbc46e44064e11ebb573df0d4d3590ee
+    entity_id: switch.tradfri_outlet_2
+    domain: switch
+  mode: single
+- id: '1602062585793'
+  alias: Bed Bug
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.bed0
+    from: '*'
+    to: unavailable
+    for: 00:00:15
+  condition: []
+  action:
+  - service: notify.telegram_notification
+    data:
+      message: Bed buttons are not working! Please reboot
   mode: single

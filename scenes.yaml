@@ -3,124 +3,66 @@
   entities:
     light.ambient_light:
       friendly_name: Ambient light
-      state: 'off'
       supported_features: 0
-    light.bedroom_yeelight:
-      brightness: 13
-      color_temp: 302
-      effect_list:
-      - Strobe color
-      - Police
-      - Christmas
-      - RGB
-      - Random Loop
-      - Fast Random Loop
-      - LSD
-      - Slowdown
-      - Disco
-      - Strobe epilepsy!
-      - Alarm
-      - Police2
-      - WhatsApp
-      - Facebook
-      - Twitter
-      - Slow Temp
-      - Stop
-      flowing: false
-      friendly_name: Bedroom yeelight
-      hs_color:
-      - 14.919
-      - 72.549
-      max_mireds: 588
-      min_mireds: 153
-      rgb_color:
-      - 255
-      - 116
-      - 70
+      state: 'off'
+    light.tradfri_bulb:
+      min_mireds: 250
+      max_mireds: 454
+      brightness: 1
+      color_temp: 454
+      friendly_name: Bedroom Light
+      supported_features: 35
       state: 'on'
-      supported_features: 63
-      xy_color:
-      - 0.595
-      - 0.343
 - id: '1582499043050'
   name: Day Light
   entities:
     light.ambient_light:
       friendly_name: Ambient light
-      state: 'off'
       supported_features: 0
-    light.bedroom_yeelight:
-      brightness: 255
-      color_temp: 302
-      flowing: false
-      friendly_name: Bedroom yeelight
-      rgb_color:
-      - 255
-      - 187
-      - 129
+      state: 'off'
+    light.tradfri_bulb:
+      min_mireds: 250
+      max_mireds: 454
+      brightness: 254
+      color_temp: 286
+      friendly_name: Bedroom Light
+      supported_features: 35
       state: 'on'
-      supported_features: 63
 - id: '1584225751090'
   name: Mood light
   entities:
     light.ambient_light:
       friendly_name: Ambient light
-      state: 'on'
       supported_features: 0
-    light.bedroom_yeelight:
-      effect_list:
-      - Strobe color
-      - Police
-      - Christmas
-      - RGB
-      - Random Loop
-      - Fast Random Loop
-      - LSD
-      - Slowdown
-      - Disco
-      - Strobe epilepsy!
-      - Alarm
-      - Police2
-      - WhatsApp
-      - Facebook
-      - Twitter
-      - Slow Temp
-      - Stop
-      flowing: false
-      friendly_name: Bedroom yeelight
-      max_mireds: 588
-      min_mireds: 153
+      state: 'on'
+    light.tradfri_bulb:
+      min_mireds: 250
+      max_mireds: 454
+      friendly_name: Bedroom Light
+      supported_features: 35
       state: 'off'
-      supported_features: 63
 - id: '1584908842380'
   name: Lights off
   entities:
     light.ambient_light:
       friendly_name: Ambient light
-      state: 'off'
       supported_features: 0
-    light.bedroom_yeelight:
-      effect_list:
-      - Strobe color
-      - Police
-      - Christmas
-      - RGB
-      - Random Loop
-      - Fast Random Loop
-      - LSD
-      - Slowdown
-      - Disco
-      - Strobe epilepsy!
-      - Alarm
-      - Police2
-      - WhatsApp
-      - Facebook
-      - Twitter
-      - Slow Temp
-      - Stop
-      flowing: false
-      friendly_name: Bedroom yeelight
-      max_mireds: 588
-      min_mireds: 153
       state: 'off'
-      supported_features: 63
+    light.tradfri_bulb:
+      min_mireds: 250
+      max_mireds: 454
+      friendly_name: Bedroom Light
+      supported_features: 35
+      state: 'off'
+- id: '1601822636543'
+  name: Projector ON
+  entities:
+    switch.tradfri_outlet_2:
+      friendly_name: Projector Speakers
+      state: 'on'
+    light.tradfri_bulb:
+      min_mireds: 250
+      max_mireds: 454
+      friendly_name: Bedroom Light
+      supported_features: 35
+      state: 'off'

@@ -38,6 +38,11 @@ spotify:
   client_id: !secret spotify_client_id
   client_secret: !secret spotify_client_secret
 
+synology_dsm:
+  - host: localhost
+    username: !secret synology_user
+    password: !secret synology_password
+    
 lcd:
 cron:
 
@@ -92,9 +97,6 @@ sensor:
     name: "Indoor pressure"
     value_template: '{{ "{:2.1f}".format(float(value_json.pressure)) }}'
     unit_of_measurement: 'hPa'
-  - platform: mqtt
-    state_topic: "domos/arduino/info/button"
-    name: "Last button pressed"
   - platform: github
     access_token: !secret github_access_token
     repositories:
