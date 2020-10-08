@@ -28,7 +28,7 @@ def setup(hass, config):
 
     def format_line(call):
         text = templater.Template(call.data.get("text"), hass).async_render()
-        return "{:^20s}".format(text)
+        return "{:^20.20}".format(text)
 
     # Service to publish a message on MQTT.
     def print_line_0(call):
