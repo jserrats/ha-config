@@ -116,7 +116,7 @@ sensor:
         unit_of_measurement: 'hPa'
         value_template: '{{ state_attr("weather.can_gaudir","pressure") }}'
   - platform: cert_expiry
-    host: netxtcloud.jserrats.xyz
+    host: blog.jserrats.xyz
   - platform: cert_expiry
     host: jserrats.xyz
 

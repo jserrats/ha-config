@@ -151,6 +151,10 @@
     from: 'off'
     to: 'on'
     entity_id: binary_sensor.bed10
+  - platform: state
+    entity_id: binary_sensor.desk6
+    from: 'off'
+    to: 'on'
   condition: []
   action:
   - scene: scene.night_light
@@ -274,12 +278,14 @@
   - entity_id: media_player.spotify_jaume_serrats9
     from: '*'
     platform: state
-    to: playing
+    attribute: media_title
+    to: '*'
   condition: []
   action:
   - data:
       text: '{{ state_attr("media_player.spotify_jaume_serrats9", "media_title") }}'
-    service: lcd.print3
+    service: lcd.print2
+  mode: single
 - id: '1584559888212'
   alias: Bedroom Light switch
   description: ''
@@ -394,7 +400,7 @@
     entity_id: binary_sensor.bed0
     from: '*'
     to: unavailable
-    for: 00:00:15
+    for: 00:01:00
   condition: []
   action:
   - service: notify.telegram_notification
