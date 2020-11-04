@@ -21,7 +21,7 @@
   - entity_id: switch.led_strip
     service: switch.turn_off
   - data: {}
-    entity_id: media_player.spotify_jaume_serrats9
+    entity_id: media_player.mpd
     service: media_player.media_pause
   - entity_id: switch.octane_wol
     service: shell_command.nibbler_off
@@ -42,6 +42,7 @@
   - data:
       text: ''
     service: lcd.print3
+  mode: single
 '1583058928601':
   alias: Desk ON
   sequence:

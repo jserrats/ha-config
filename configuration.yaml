@@ -188,6 +188,10 @@ binary_sensor:
     host: raspberry.lan
     name: Raspberry
 
+media_player:
+  - platform: mpd
+    host: 192.168.0.15
+    
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml

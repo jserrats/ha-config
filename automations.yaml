@@ -37,10 +37,9 @@
     entity_id: binary_sensor.bed5
   condition: []
   action:
-  - data:
-      payload: play
-      topic: domos/media/spotify
-    service: mqtt.publish
+  - data: {}
+    service: media_player.media_play_pause
+    entity_id: media_player.mpd
   mode: single
 - id: '1581541286812'
   alias: Button  - Spotify Previous
@@ -62,10 +61,9 @@
     entity_id: binary_sensor.bed4
   condition: []
   action:
-  - data:
-      payload: previous
-      topic: domos/media/spotify
-    service: mqtt.publish
+  - data: {}
+    service: media_player.media_previous_track
+    entity_id: media_player.mpd
   mode: single
 - id: '1581541286813'
   alias: Button  - Spotify Next
@@ -91,10 +89,9 @@
     entity_id: binary_sensor.bed6
   condition: []
   action:
-  - data:
-      payload: next
-      topic: domos/media/spotify
-    service: mqtt.publish
+  - service: media_player.media_next_track
+    data: {}
+    entity_id: media_player.mpd
   mode: single
 - id: '1581542900662'
   alias: Button - Lights off
