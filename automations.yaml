@@ -245,7 +245,12 @@
     from: '*'
     platform: state
     to: playing
-  condition: []
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: media_player.chromechastity
+      state: unavailable
   action:
   - scene: scene.projector_on
   mode: single
@@ -272,15 +277,15 @@
   alias: LCD 2 - Spotify
   description: ''
   trigger:
-  - entity_id: media_player.spotify_jaume_serrats9
-    from: '*'
+  - from: '*'
     platform: state
     attribute: media_title
     to: '*'
+    entity_id: media_player.mpd
   condition: []
   action:
   - data:
-      text: '{{ state_attr("media_player.spotify_jaume_serrats9", "media_title") }}'
+      text: '{{ state_attr("media_player.mpd", "media_title") }}'
     service: lcd.print2
   mode: single
 - id: '1584559888212'
@@ -404,4 +409,33 @@
   - service: notify.telegram_notification
     data:
       message: Bed buttons are not working! Please reboot
+  mode: single
+- id: '1607531108834'
+  alias: All desk up
+  description: ''
+  trigger:
+  - platform: mqtt
+    topic: domos/arduino/button
+    payload: '2'
+  condition: []
+  action:
+  - service: switch.turn_on
+    data: {}
+    entity_id: switch.octane_wol
+  - service: switch.turn_on
+    data: {}
+    entity_id: switch.nibbler_wol
+  mode: single
+- id: '1611263782478'
+  alias: Octoprint switch
+  description: ''
+  trigger:
+  - platform: mqtt
+    topic: octoPrint/switch
+  condition: []
+  action:
+  - type: toggle
+    device_id: 128de6da059c11eba877c1c3759ed6e7
+    entity_id: switch.tradfri_outlet
+    domain: switch
   mode: single

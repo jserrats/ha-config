@@ -119,7 +119,10 @@ sensor:
     host: blog.jserrats.xyz
   - platform: cert_expiry
     host: jserrats.xyz
-
+  - platform: bitcoin
+    display_options:
+      - exchangerate
+      - trade_volume_btc
 switch:
   - platform: template
     switches:
